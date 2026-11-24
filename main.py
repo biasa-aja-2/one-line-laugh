@@ -31,8 +31,10 @@ def main():
     assert "  " not in text, "line must not contain double spaces"
     assert len(text.split()) <= 40, "line must stay economical, got %d words" % len(text.split())
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    # Write the line exactly: no trailing newline, so entry.txt holds
+    # precisely the 97-character sentence the gate measures.
     with open(OUTPUT_PATH, "w", encoding="utf-8", newline="\n") as f:
-        f.write(LINE + "\n")
+        f.write(LINE)
     os.chmod(OUTPUT_PATH, 0o644)
     print("wrote %d chars to %s" % (len(LINE), OUTPUT_PATH))
 
